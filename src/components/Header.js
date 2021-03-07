@@ -1,13 +1,19 @@
-import React  from 'react';
+import React, { useState }  from 'react';
 import logo from "../images/somethibg.png";
 import {BrowserRouter as Router, Route, Link, NavLink, Switch} from 'react-router-dom';
+import Dialog from './Dialog'
 
 const Header = () =>{
+    const [showModal, setShowModal] = useState(false);
+
+    const openModal = () =>{
+        setShowModal(prev => !prev);
+    };
 
     return(
     
       
-        <nav class="bg-indigo-500 p-4 flex items-center m-2 rounded-md">
+        <nav class="bg-gradient-to-r from-indigo-400 via-red-500 to-indigo-500 p-4 flex items-center m-2 rounded-md">
             
           
             <div class="w-6/12 sm:w-4/12 px-4">
@@ -43,8 +49,11 @@ const Header = () =>{
 
 
             <div>
-                <a href="#" class="inline-block p-2 text-indigo-200 hover:text-indigo-100 mr-2">Login</a>
-                <a href="#" class="inline-block p-2 py-2 px-4 text-yellow-700 bg-yellow-400 rounded">Sign Up</a>
+                < button onClick={openModal} class="inline-block p-2 text-indigo-200 hover:text-indigo-100 mr-2">Login</ button>
+                <Dialog showModal={showModal} setShowModal={setShowModal}/>
+                <Link to="/signup">               
+                <button class="inline-block p-2 py-2 px-4 text-yellow-700 bg-yellow-400 rounded">Sign Up</button>
+                </Link>
             </div>
          </nav>
         
